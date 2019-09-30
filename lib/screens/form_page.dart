@@ -13,6 +13,35 @@ class _FormPageState extends State<FormPage> {
   File file;
 
   // Method
+  Widget nameText() {
+    return Container(
+      margin: EdgeInsets.only(left: 50.0, right: 50.0),
+      child: TextFormField(
+        decoration: InputDecoration(
+          labelText: 'Name :',
+          helperText: 'Type Your Display Name',
+          hintText: 'English Only',
+          icon: Icon(Icons.face),
+        ),
+      ),
+    );
+  }
+
+  Widget detailText() {
+    return Container(
+      margin: EdgeInsets.only(left: 50.0, right: 50.0),
+      child: TextFormField(
+        keyboardType: TextInputType.multiline,
+        maxLines: 4,
+        decoration: InputDecoration(
+          labelText: 'Detail :',
+          helperText: 'Type Your Detail',
+          icon: Icon(Icons.details),
+        ),
+      ),
+    );
+  }
+
   Widget showImage() {
     return Container(
       margin: EdgeInsets.only(top: 50.0),
@@ -48,25 +77,27 @@ class _FormPageState extends State<FormPage> {
     );
   }
 
-  Future<void> cameraThread()async{
-
+  Future<void> cameraThread() async {
     var imageObject = await ImagePicker.pickImage(source: ImageSource.camera);
     setState(() {
       file = imageObject;
     });
-
   }
 
   Widget galleryButton() {
     return IconButton(
-      icon: Icon(Icons.add_photo_alternate, size: 48.0,color: Colors.green,),
+      icon: Icon(
+        Icons.add_photo_alternate,
+        size: 48.0,
+        color: Colors.green,
+      ),
       onPressed: () {
         galleryThread();
       },
     );
   }
 
-  Future<void> galleryThread()async{
+  Future<void> galleryThread() async {
     var imageObject = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
       file = imageObject;
@@ -79,6 +110,8 @@ class _FormPageState extends State<FormPage> {
       children: <Widget>[
         showImage(),
         showButton(),
+        nameText(),
+        detailText(),
       ],
     );
   }
