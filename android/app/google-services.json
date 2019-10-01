@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "118720684260",
+    "firebase_url": "https://ungunseen.firebaseio.com",
+    "project_id": "ungunseen",
+    "storage_bucket": "ungunseen.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118720684260:android:67764285605ce1c37eccf1",
+        "android_client_info": {
+          "package_name": "com.masterung.ungunseen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "118720684260-p6l8pce93i8r809iqlg4vll09eblvpi7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBphb7ug1d_GPOdZEqkGO01ERkuFGAgtR4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "118720684260-p6l8pce93i8r809iqlg4vll09eblvpi7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

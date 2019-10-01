@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -15,13 +16,21 @@ class _FormPageState extends State<FormPage> {
   double lat = 0, lng = 0;
   bool imageBool = false; // false ==> Non Choose Image
   final formKey = GlobalKey<FormState>();
-  String name, detail;
+  String name, detail, code;
 
   // Method
   @override
   void initState() {
     super.initState();
     findLatLng();
+    createCode();
+  }
+
+  void createCode(){
+
+    int randInt = Random().nextInt(10000);
+    code = 'code$randInt';
+
   }
 
   Future<void> findLatLng() async {
@@ -183,7 +192,7 @@ class _FormPageState extends State<FormPage> {
                 if ((name.isEmpty) || (detail.isEmpty)) {
                   myAlert('Have Space', 'Please Fill Every Blank');
                 } else {
-                    
+                    print('name = $name, detail = $detail, lat = $lat, lng = $lng, code = $code');
                 }
               } else {
                 myAlert('Non Choose Image',
