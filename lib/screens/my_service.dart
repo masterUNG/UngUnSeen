@@ -9,13 +9,13 @@ class MyService extends StatefulWidget {
 
 class _MyServiceState extends State<MyService> {
   // Explicit
-  Widget currentWidget = FormPage();
+  Widget currentWidget = ListViewPage();
 
   // Method
   Widget menuFormPage() {
     return ListTile(
       leading: Icon(
-        Icons.filter_1,
+        Icons.filter_2,
         size: 36.0,
         color: Colors.blue,
       ),
@@ -33,12 +33,13 @@ class _MyServiceState extends State<MyService> {
   Widget menuListViewPage() {
     return ListTile(
       leading: Icon(
-        Icons.filter_2,
+        Icons.filter_1,
         size: 36.0,
         color: Colors.purple,
       ),
       title: Text('ListView'),
-      subtitle: Text('หน้าที่ แสดง ข้อมูล การท่องเที่ยวของเรา'),onTap: (){
+      subtitle: Text('หน้าที่ แสดง ข้อมูล การท่องเที่ยวของเรา'),
+      onTap: () {
         Navigator.of(context).pop();
         setState(() {
           currentWidget = ListViewPage();
@@ -84,9 +85,9 @@ class _MyServiceState extends State<MyService> {
       child: ListView(
         children: <Widget>[
           myHead(),
-          menuFormPage(),
-          Divider(),
           menuListViewPage(),
+          Divider(),
+          menuFormPage(),
           Divider(),
         ],
       ),
