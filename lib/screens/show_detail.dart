@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ungunseen/models/unseen_model.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ShowDetail extends StatefulWidget {
   final UnseenModel unseenModel;
@@ -12,16 +13,21 @@ class ShowDetail extends StatefulWidget {
 class _ShowDetailState extends State<ShowDetail> {
   // Explicit
   UnseenModel myUnseenModel;
+  double lat = 0, lng = 0;
+  LatLng myLatLng;
 
   // Method
   @override
   void initState() {
     super.initState();
     myUnseenModel = widget.unseenModel;
+    lat = myUnseenModel.lat;
+    lng = myUnseenModel.lng;
   }
 
   Widget showName() {
-    return Row(mainAxisAlignment: MainAxisAlignment.center,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
           myUnseenModel.name,
@@ -43,6 +49,38 @@ class _ShowDetailState extends State<ShowDetail> {
     return Text(myUnseenModel.detail);
   }
 
+  Widget showMap() {
+    myLatLng = LatLng(lat, lng);
+    CameraPosition cameraPosition = CameraPosition(
+      target: myLatLng,
+      zoom: 16.0,
+    );
+
+    return Container(
+      margin: EdgeInsets.all(20.0),
+      height: 400.0,
+      child: GoogleMap(
+        mapType: MapType.normal,
+        initialCameraPosition: cameraPosition,
+        onMapCreated: (GoogleMapController googleMapController) {},
+        markers: myMarker(),
+      ),
+    );
+  }
+
+  Set<Marker> myMarker() {
+    return <Marker>[
+      Marker(
+        markerId: MarkerId('marker1'),
+        position: myLatLng,
+        infoWindow: InfoWindow(
+          title: myUnseenModel.name,
+          snippet: myUnseenModel.detail,
+        ),
+      ),
+    ].toSet();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +92,7 @@ class _ShowDetailState extends State<ShowDetail> {
           showName(),
           showPic(),
           showDetail123(),
+          showMap(),
         ],
       ),
     );
