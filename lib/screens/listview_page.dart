@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:ungunseen/models/unseen_model.dart';
+import 'package:ungunseen/screens/show_detail.dart';
 
 class ListViewPage extends StatefulWidget {
   @override
@@ -76,16 +77,25 @@ class _ListViewPageState extends State<ListViewPage> {
     return ListView.builder(
       itemCount: unseenModels.length,
       itemBuilder: (BuildContext context, int index) {
-        return Container(
-          decoration: index % 2 == 0
-              ? BoxDecoration(color: Colors.blue.shade100)
-              : BoxDecoration(color: Colors.blue.shade300),
-          child: Row(
-            children: <Widget>[
-              showPicture(index),
-              showText(index),
-            ],
+        return GestureDetector(
+          child: Container(
+            decoration: index % 2 == 0
+                ? BoxDecoration(color: Colors.blue.shade100)
+                : BoxDecoration(color: Colors.blue.shade300),
+            child: Row(
+              children: <Widget>[
+                showPicture(index),
+                showText(index),
+              ],
+            ),
           ),
+          onTap: () {
+            MaterialPageRoute materialPageRoute = MaterialPageRoute(
+                builder: (BuildContext context) => ShowDetail(
+                      unseenModel: unseenModels[index],
+                    ));
+            Navigator.of(context).push(materialPageRoute);
+          },
         );
       },
     );
