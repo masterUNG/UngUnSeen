@@ -55,7 +55,8 @@ class _ListViewPageState extends State<ListViewPage> {
       padding: EdgeInsets.all(20.0),
       width: MediaQuery.of(context).size.width * 0.5,
       height: MediaQuery.of(context).size.width * 0.4,
-      child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
             unseenModels[index].name,
@@ -75,11 +76,16 @@ class _ListViewPageState extends State<ListViewPage> {
     return ListView.builder(
       itemCount: unseenModels.length,
       itemBuilder: (BuildContext context, int index) {
-        return Row(
-          children: <Widget>[
-            showPicture(index),
-            showText(index),
-          ],
+        return Container(
+          decoration: index % 2 == 0
+              ? BoxDecoration(color: Colors.blue.shade100)
+              : BoxDecoration(color: Colors.blue.shade300),
+          child: Row(
+            children: <Widget>[
+              showPicture(index),
+              showText(index),
+            ],
+          ),
         );
       },
     );
