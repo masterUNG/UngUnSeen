@@ -67,6 +67,7 @@ class _ShowDetailState extends State<ShowDetail> {
       ),
     );
   }
+  
 
   Set<Marker> myMarker() {
     return <Marker>[
